@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ticket Sales Management System</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-image: url('https://picfiles.alphacoders.com/356/356893.jpg'); 
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            color: #fff;
+        }
+        .navbar {
+            background-color: rgba(0, 0, 0, 0.8);
+            overflow: hidden;
+            color: white;
+            padding: 10px;
+        }
+        .navbar a {
+            color: white;
+            padding: 10px;
+            text-decoration: none;
+            float: left;
+        }
+        .navbar a:hover {
+            background-color: #575757;
+        }
+        .container {
+            padding: 20px;
+        }
+        .login-form, .content-section {
+            background: rgba(0, 0, 0, 0.7);
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+            margin: 20px auto;
+            max-width: 400px;
+        }
+        .login-form input, .login-form button, .filters select {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        .dashboard, .ticket-sales, .real-time, .top-movies {
+            display: none;
+        }
+        .active {
+            display: block;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(255, 255, 255, 0.8);
+            color: #000;
+        }
+        table th, table td {
+            border: 1px solid #ddd;
+            padding: 8px;
+        }
+        table th {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+        .notification {
+            color: #ff0000;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <!-- Login Screen -->
+    <div class="login-form" id="login-screen">
+        <h2>Login</h2>
+        <input type="text" placeholder="Username" id="username">
+        <input type="password" placeholder="Password" id="password">
+        <button onclick="navigateTo('dashboard')">Login</button>
+    </div>
+
+    <!-- Navigation Bar -->
+    <div class="navbar" id="navbar">
+        <a href="#" onclick="navigateTo('dashboard')">Home</a>
+        <a href="#" onclick="navigateTo('ticket-sales')">View Ticket Sales</a>
+        <a href="#" onclick="navigateTo('real-time')">Real-Time Updates</a>
+        <a href="#" onclick="navigateTo('top-movies')">Top Movies</a>
+        <a href="#" onclick="navigateTo('login')">Logout</a>
+    </div>
+
+    <!-- Content Container -->
+    <div class="container">
+        <!-- Dashboard -->
+        <div id="dashboard" class="dashboard content-section">
+            <h2>Dashboard</h2>
+            <p>Welcome, <strong>User</strong>!</p>
+            <p>Quick Stats: <em>Ticket Sales Overview</em></p>
+        </div>
+
+        <!-- Ticket Sales -->
+        <div id="ticket-sales" class="ticket-sales content-section">
+            <h2>Ticket Sales</h2>
+            <div class="filters">
+                <select id="showtime">
+                    <option>Showtime</option>
+                    <option>Morning</option>
+                    <option>Afternoon</option>
+                    <option>Evening</option>
+                </select>
+                <select id="date">
+                    <option>Date</option>
+                    <option>2024-11-19</option>
+                    <option>2024-11-20</option>
+                </select>
+                <select id="movie">
+                    <option>Movie</option>
+                    <option>Movie 1</option>
+                    <option>Movie 2</option>
+                </select>
+            </div>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Movie</th>
+                        <th>Showtime</th>
+                        <th>Date</th>
+                        <th>Tickets Sold</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Movie 1</td>
+                        <td>Morning</td>
+                        <td>2024-11-19</td>
+                        <td>120</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Real-Time Updates -->
+        <div id="real-time" class="real-time content-section">
+            <h2>Real-Time Updates</h2>
+            <div class="live-feed">
+                <p>Live Feed: <strong>120 tickets sold in the last 10 minutes.</strong></p>
+            </div>
+            <div class="notification">
+                <p>Alert: Movie 1 is nearly sold out!</p>
+            </div>
+        </div>
+
+        <!-- Top Movies -->
+        <div id="top-movies" class="top-movies content-section">
+            <h2>Top Movies</h2>
+            <table>
+                <thead>
+                    <tr>
+                        <th>Rank</th>
+                        <th>Movie</th>
+                        <th>Tickets Sold</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Movie 1</td>
+                        <td>5000</td>
+                        <td><button>Promote</button> <button>View Details</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <script>
+        function navigateTo(screen) {
+            document.querySelectorAll('.content-section').forEach(section => {
+                section.classList.remove('active');
+            });
+            if (screen === 'login') {
+                document.getElementById('login-screen').style.display = 'block';
+                document.getElementById('navbar').style.display = 'none';
+            } else {
+                document.getElementById('login-screen').style.display = 'none';
+                document.getElementById(screen).classList.add('active');
+                document.getElementById('navbar').style.display = 'block';
+            }
+        }
+        navigateTo('login');
+    </script>
+</body>
+</html>
